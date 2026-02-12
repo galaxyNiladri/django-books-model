@@ -1,0 +1,74 @@
+{% extends "books_outlet/base.html" %}
+{% load static %}
+
+
+{% block page_title %} {{ title|title }} {% endblock %}
+{% block page_style %} 
+<link rel="stylesheet" href="{% static "books_outlet/book_details.css" %}">
+{% endblock %}
+
+
+{% block content %}
+
+    <header>
+        <h1> {{ title|title }} </h1>
+    </header>
+
+    <div class='container'>
+
+
+        <div class='sub-container'>
+            <h2>About Book</h2>
+            <p> {{ brief|title }} </p>
+            <hr> 
+
+            <h2>Authors</h2>
+            <ul style='list-style-type: decimal;'>
+            {% for each in author %}
+                
+                <li> {{ each|title }} </li>
+
+            {% endfor %}
+            </ul>
+            <hr>
+
+
+
+            <h3> Book rating: {{ rating }} </h3>
+            <hr>
+
+            {% if is_bestseller %}
+                <h3> Best Seller: ✅ </h3>
+
+            {% else %}
+                <h3> Best Seller: 🟥 </h3>
+
+            {% endif %}
+            <hr>
+
+
+
+            <h3> Published at </h3>
+            <ul>
+                {% for ct in countries %}
+                    <li> {{ ct|title }} </li>
+                {% endfor %}
+            </ul>
+        
+        </div> 
+
+
+
+    </div>
+
+
+
+
+
+
+{% comment %} <h3> {{ book.author }} </h3>
+
+<p> {{ book.brief }} </p> {% endcomment %}
+
+
+{% endblock %}

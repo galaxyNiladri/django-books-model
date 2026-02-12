@@ -1,10 +1,29 @@
 {% extends "books_outlet/base.html" %}
+{% load static %}
 
 {% block page_title %} All Books {% endblock %}
+{% block page_style %}
+<link rel="stylesheet" href="{% static "books_outlet/books_list.css" %}">
+{% endblock %}
 
 
 {% block content %}
 
-    
+    <header>
+        <h1>All Existed Books</h1>
+    </header>
+
+
+    <div class='container'>
+
+        <ul style="list-style-type: dicimal;" >
+            {% for book in books %}
+                <li> <a href="{% url "book_info"  book.slug %}"> {{ book.title }} </a> </li>
+
+            {% endfor %}
+        </ul>
+
+    </div>
+
 
 {% endblock %}
