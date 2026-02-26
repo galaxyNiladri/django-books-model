@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block page_title %} {{ title|title }} {% endblock %}
+{% block page_title %} {{ book.title|title }} {% endblock %}
 {% block page_style %} 
 <link rel="stylesheet" href="{% static "books_outlet/book_details.css" %}">
 {% endblock %}
@@ -11,7 +11,7 @@
 {% block content %}
 
     <header>
-        <h1> {{ title|title }} </h1>
+        <h1> {{ book.title|title }} </h1>
     </header>
 
     <div class='container'>
@@ -19,12 +19,12 @@
 
         <div class='sub-container'>
             <h2>About Book</h2>
-            <p> {{ brief|title }} </p>
+            <p> {{ book.brief|title }} </p>
             <hr> 
 
             <h2>Authors</h2>
             <ul style='list-style-type: decimal;'>
-            {% for each in author %}
+            {% for each in book.author.all %}
                 
                 <li> {{ each|title }} </li>
 
@@ -34,10 +34,10 @@
 
 
 
-            <h3> Book rating: {{ rating }} </h3>
+            <h3> Book rating: {{ book.rating }} </h3>
             <hr>
 
-            {% if is_bestseller %}
+            {% if book.is_bestseller %}
                 <h3> Best Seller: ✅ </h3>
 
             {% else %}
@@ -50,7 +50,7 @@
 
             <h3> Published at </h3>
             <ul>
-                {% for ct in countries %}
+                {% for ct in book.published_countries.all %}
                     <li> {{ ct|title }} </li>
                 {% endfor %}
             </ul>
